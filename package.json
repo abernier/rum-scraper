@@ -17,6 +17,7 @@
     "npm": "1.1.x"
   },
   "dependencies": {
+    "express": "2.5.x",
     "optimist": "latest",
     "nq": "latest",
     "request": "latest"
