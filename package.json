@@ -1,25 +1,13 @@
 {
   "name": "rum-scraper",
-  "version": "0.0.0",
-  "description": "ERROR: No README.md file found!",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.0.1",
+  "dependencies": {
+    "optimist": "0.3.x",
+    "nq": "0.0.x",
+    "request": "2.11.x"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/oiim/rum-scraper.git"
-  },
-  "author": "",
-  "license": "BSD",
   "engines": {
     "node": "0.8.x",
     "npm": "1.1.x"
-  },
-  "dependencies": {
-    "express": "2.5.x",
-    "optimist": "latest",
-    "nq": "latest",
-    "request": "latest"
   }
 }
