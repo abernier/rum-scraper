@@ -12,10 +12,10 @@ npm install
 ## Synopsis
 
 ```sh
-./index.js --help
+node index.js --help
 ```
 
-Run forever with: `while true; do ./index.js -u john@example.org -p XXXXXX; done`
+Run forever with: `while true; do node index.js -u john@example.org -p XXXXXX; done`
 
 ## Misc
 

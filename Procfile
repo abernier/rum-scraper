@@ -1,1 +1,1 @@
-scraper: while true; do ./index.js -u $AUM_USERNAME -p $AUM_PASSWORD; done
+scraper: while true; do node index.js -u $AUM_USERNAME -p $AUM_PASSWORD; done
