@@ -1,1 +1,1 @@
-scraper: which casperjs
+scraper: node index.js -u $AUM_USERNAME -p $AUM_PASSWORD

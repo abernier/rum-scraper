@@ -25,7 +25,7 @@ var $ = require('nq');
 var exec = require('child_process').exec;
 function grabNewGirls() {
   return $.Deferred(function (dfd) {
-    exec('casperjs index.casper.js --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=cookies.txt',
+    exec('/app/vendor/casperjs/bin/casperjs index.casper.js --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=cookies.txt',
       function (error, stdout, stderr) {
         if (error === null) {
           var o;
