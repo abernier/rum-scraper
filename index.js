@@ -24,20 +24,15 @@ var $ = require('nq');
 
 var exec = require('child_process').exec;
 function grabNewGirls() {
-  var stdout = "";
-  var stderr = "";
-
   return $.Deferred(function (dfd) {
     exec('phantomjs',
       function (error, stdout, stderr) {
         if (error === null) {
-          var o;
           try {
-            o = JSON.parse(''+stdout)
+            dfd.resolve(JSON.parse(''+stdout));
           } catch (e) {
             dfd.reject(e);
           }
-          dfd.resolve(o);
         } else {
           dfd.reject(''+stderr);
         }
