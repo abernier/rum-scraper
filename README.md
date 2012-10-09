@@ -26,6 +26,6 @@ Default database is here: https://abernier.iriscouch.com:6984/_utils/database.ht
 ```sh
 heroku create -b https://github.com/abernier/heroku-buildpack-nodejs.git
 git push heroku master
-heroku config:add AUM_USERNAME=antoine.bernier@gmail.com AUM_PASSWORD=292901
+heroku config:add AUM_USERNAME=john@example.org AUM_PASSWORD=XXXXXX
 heroku ps:scale scraper=1
 ```
