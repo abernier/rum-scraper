@@ -28,7 +28,7 @@ function grabNewGirls() {
   var stderr = "";
 
   return $.Deferred(function (dfd) {
-    /*exec('/app/vendor/casperjs/bin/casperjs index.casper.js --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=cookies.txt',
+    exec('casperjs index.casper.js --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=cookies.txt',
       function (error, stdout, stderr) {
         if (error === null) {
           var o;
@@ -41,30 +41,6 @@ function grabNewGirls() {
         } else {
           dfd.reject(''+stderr);
         }
-    });*/
-    var spawn = require('child_process').spawn;
-    var casperjs = spawn('casperjs', ['index.casper.js', '--username=' + argv.username, '--password=' + argv.password, '--cookies-file=cookies.txt']);
-    casperjs.stdout.on('data', function (data) {
-      stdout += ''+data;
-    });
-    casperjs.stderr.on('data', function (data) {
-      stderr += ''+data;
-    });
-    casperjs.on('exit', function (code) {
-      console.log('exit', code);
-      var print = require('util').print;
-      if (code === 0) {
-        try {
-          console.log('trying', stdout);
-          var o = JSON.parse(stdout);
-          console.log('ok')
-          dfd.resolve(o);
-        } catch (e) {
-          dfd.reject(e);
-        }
-      } else {
-        dfd.reject();
-      }
     });
   }).promise();
 }
