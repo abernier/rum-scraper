@@ -28,7 +28,7 @@ function grabNewGirls() {
   var stderr = "";
 
   return $.Deferred(function (dfd) {
-    exec('casperjs index.casper.js --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=cookies.txt',
+    exec('phantomjs',
       function (error, stdout, stderr) {
         if (error === null) {
           var o;
