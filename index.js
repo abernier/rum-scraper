@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var argv = require('optimist')
       .usage('Scrap AUM and couch girls.\nUsage: $0 -u john@example.org -p XXXXXX [Options]')
       
