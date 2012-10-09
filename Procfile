@@ -1,1 +1,1 @@
-scraper: node index.js -u $AUM_USERNAME -p $AUM_PASSWORD
+scraper: casperjs index.casper.js --username=antoine.bernier@gmail.com --password=292901 --cookies-file=cookies.txt
