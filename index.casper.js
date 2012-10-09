@@ -37,8 +37,8 @@ casper.then(function() {
         //this.echo("no, let's login...", 'INFO');
 
         this.fill('form[action*="auth/login"]', {
-            'username': username,
-            'password': password,
+            'username': ''+username,
+            'password': ''+password,
             'remember': true
         }, true);
     } else {
@@ -52,10 +52,6 @@ casper.then(function() {
     }, 'Not logged-in!');
 });
 
-casper.then(function() {
-    this.echo(JSON.stringify(this.getGlobal('rolloverObject')));
-});
-
 casper.run(function () {
-    this.exit(0);
+    this.echo(JSON.stringify(this.getGlobal('rolloverObject'))).exit(0);
 });
