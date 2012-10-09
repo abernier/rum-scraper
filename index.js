@@ -25,17 +25,16 @@ var $ = require('nq');
 var exec = require('child_process').exec;
 function grabNewGirls() {
   return $.Deferred(function (dfd) {
-    exec('phantomjs',
-      function (error, stdout, stderr) {
-        if (error === null) {
-          try {
-            dfd.resolve(JSON.parse(''+stdout));
-          } catch (e) {
-            dfd.reject(e);
-          }
-        } else {
-          dfd.reject(''+stderr);
+    exec('casperjs index.casper.js --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=cookies.txt', function (error, stdout, stderr) {
+      if (error === null) {
+        try {
+          dfd.resolve(JSON.parse(''+stdout));
+        } catch (e) {
+          dfd.reject(e);
         }
+      } else {
+        dfd.reject(''+stderr);
+      }
     });
   }).promise();
 }
