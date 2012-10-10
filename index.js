@@ -92,7 +92,6 @@ function augmentWithIdAndRev(newGirls) {
 function storeGirls(preparedGirls) {
   var dfd = $.Deferred();
 
-  // curl
   request.post({
     url: DB + '/_bulk_docs',
     json: {docs: preparedGirls}
