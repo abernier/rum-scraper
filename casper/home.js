@@ -1,5 +1,5 @@
 //
-// Usage: casperjs index.casper.js --username=john --password=XXXX --cookies-file=cookies.txt
+// Usage: casperjs home.casper.js --username=john --password=XXXX --cookies-file=cookies.txt
 //
 // cookies.txt must exist
 //

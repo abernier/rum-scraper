@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 var argv = require('optimist')
-      .usage('Scrap AUM and couch girls.\nUsage: $0 -u john@example.org -p XXXXXX [Options]')
+      .usage('Scrap AUM and couch girls.\nUsage: $0 command -u john@example.org -p XXXXXX [Options]')
       
-      .demand('u')
       .alias('u', 'username')
+      .demand('u')
       .describe('u', 'your AUM login')
 
-      .demand('p')
       .alias('p', 'password')
+      .demand('p')
       .describe('p', 'your AUM password')
 
       .alias('c', 'couch')
@@ -26,7 +26,7 @@ var $ = require('nq');
 var exec = require('child_process').exec;
 function grabNewGirls() {
   return $.Deferred(function (dfd) {
-    exec('casperjs index.casper.js --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=cookies.txt', function (error, stdout, stderr) {
+    exec('casperjs casper/home.js --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=cookies.txt', function (error, stdout, stderr) {
       if (error === null) {
         try {
           dfd.resolve(JSON.parse(''+stdout));
