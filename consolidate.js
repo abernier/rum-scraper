@@ -56,7 +56,7 @@ function storeGirl(jsonDoc) {
     url: DB + '/' + jsonDoc._id,
     json: jsonDoc
   }, function (error, response, body) {
-    //console.log(body);
+    console.log(body);
     if (response.statusCode === 201) {
       dfd.resolve(body);
     } else {
