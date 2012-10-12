@@ -67,6 +67,24 @@ function storeGirl(jsonDoc) {
   return dfd.promise();
 }
 
+function deleteGirl(id, rev) {
+  var dfd = $.Deferred();
+
+  console.log('deleting', id, rev);
+
+  // http://wiki.apache.org/couchdb/HTTP_Document_API#DELETE
+  request.del({url: DB + '/' + id + '?rev=' + rev}, function (error, response, body) {
+    console.log(body);
+    if (response.statusCode === 200) {
+      dfd.resolve(body);
+    } else {
+      dfd.reject();
+    }
+  });
+
+  return dfd.promise();
+}
+
 console.log('Retrieving a girl to be consolidated...');
 retrieveGirlToBeConsolidated().then(function (girlDoc) {
   console.log('girl retrieved!');
@@ -75,16 +93,25 @@ retrieveGirlToBeConsolidated().then(function (girlDoc) {
   grabSpecificGirl(girlDoc.id).then(function (freshInfos) {
     console.log('fresh infos grabbed!', freshInfos);
 
-    ['mail', 'charm', 'basket', 'visit', 'lastSeenAt', 'description', 'shoppinglist'].forEach(function (el, i) {
-      if (el in freshInfos) {
-        girlDoc[el] = freshInfos[el];
-      }
-    });
-    girlDoc.updatedAt = new Date().getTime();
+    if (Object.keys(freshInfos).length > 0) {
+      // Augment doc with freshInfos
+      ['mail', 'charm', 'basket', 'visit', 'lastSeenAt', 'description', 'shoppinglist'].forEach(function (el, i) {
+        if (el in freshInfos) {
+          girlDoc[el] = freshInfos[el];
+        }
+      });
+      girlDoc.updatedAt = new Date().getTime();
 
-    console.log('Storing girl...');
-    storeGirl(girlDoc).then(function () {
-      console.log('couched!')
-    });
+      console.log('Storing girl...');
+      storeGirl(girlDoc).then(function () {
+        console.log('couched!')
+      });
+    } else {
+      // freshInfos empty, ie: means the girl is no longer on AUM => delete her
+      deleteGirl(girlDoc._id, girlDoc._rev).then(function () {
+        console.log('deleted!')
+      });
+    }
+    
   });
 });
