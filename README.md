@@ -11,21 +11,34 @@ npm install
 
 ## Synopsis
 
+### Seeder
+
 ```sh
-./index.js --help
+./seed.js --help
 ```
 
-Run forever with: `while true; do ./index.js -u john@example.org -p XXXXXX; done`
+### Consolidator
 
-## Misc
-
-Default database is here: https://abernier.iriscouch.com:6984/_utils/database.html?aum/_all_docs
+```sh
+./consolidate.js --help
+```
 
 ## Heroku
 
 ```sh
 heroku create -b https://github.com/abernier/heroku-buildpack-nodejs.git
 git push heroku master
+```
+
+### Seeder
+
+```sh
 heroku config:add AUM_USERNAME=john@example.org AUM_PASSWORD=XXXXXX
-heroku ps:scale scraper=1
+heroku ps:scale seeder=1
+```
+
+### Consolidator
+
+```sh
+heroku ps:scale consolidator=1
 ```
