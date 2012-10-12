@@ -47,40 +47,38 @@ function grabNewGirls() {
 var DB = argv.couch;
 
 var request = require('request');
-function augmentWithIdAndRev(newGirls) {
+function prepareGirlsToBeStored(girls) {
   var dfd = $.Deferred();
 
-  var keys = newGirls.map(function (el, i) {
-    return "" + el.id;
+  //
+  // _id and updatedAt
+  //
+
+  var updatedAt = new Date().getTime();
+  girls.forEach(function (girl) {
+    girl._id = girl.id;
+    girl.updatedAt = updatedAt;
   });
+
+  //
+  // filter not new ones
+  //
+
+  var keys = girls.map(function (el) {return ""+el.id;});
 
   request.post({
     url: DB + '/_all_docs',
     json: {keys: keys}
   }, function (error, response, body) {
-    var idsrevs = {};
-
     //console.log(body);
-
     if (response.statusCode === 200) {
-
-      body.rows.forEach(function (row) {
-        if (row.value && row.value.rev) {
-          idsrevs[row.id] = row.value.rev;
-        }
+      // Reject girls already stored in DB
+      var _ids = body.rows.map(function (row) {return row.id;});
+      var onlyNewGirls = girls.filter(function (girl) {
+        return _ids.indexOf(girl.id) === -1;
       });
 
-      var updatedAt = new Date().getTime();
-      newGirls.forEach(function (girl) {
-        girl._id = girl.id;
-
-        if (girl.id in idsrevs) {
-          girl._rev = idsrevs[girl.id]
-        }
-
-        girl.updatedAt = updatedAt;
-      });
-      dfd.resolve(newGirls);
+      dfd.resolve(onlyNewGirls);
     } else {
       dfd.reject();
     }
@@ -119,11 +117,11 @@ grabNewGirls().then(function (newGirls) {
   console.log('%s girls grabbed!', newGirls.length);
 
   console.log('Preparing them to be stored (_id and _rev)...');
-  augmentWithIdAndRev(newGirls).then(function (data) {
-    console.log('OK, those girls are ready to be couched!');
+  prepareGirlsToBeStored(newGirls).then(function (preparedGirls) {
+    console.log('OK, those girls are ready to be couched! (%s rejected)', (newGirls.length - preparedGirls.length), preparedGirls);
 
     console.log("Let's couch them...");
-    storeGirls(data).then(function () {
+    storeGirls(preparedGirls).then(function () {
       console.log('Couched!');
     });
   });
