@@ -116,13 +116,17 @@ console.log('Grabbing some girls from adopteunmec...');
 grabNewGirls().then(function (newGirls) {
   console.log('%s girls grabbed!', newGirls.length);
 
-  console.log('Preparing them to be stored (_id and _rev)...');
+  console.log('Preparing them to be stored (_id updatedAt and filter)...');
   prepareGirlsToBeStored(newGirls).then(function (preparedGirls) {
     console.log('OK, those girls are ready to be couched! (%s rejected)', (newGirls.length - preparedGirls.length), preparedGirls);
 
-    console.log("Let's couch them...");
-    storeGirls(preparedGirls).then(function () {
-      console.log('Couched!');
-    });
+    if (preparedGirls.length > 0) {
+      console.log("Let's couch them...");
+      storeGirls(preparedGirls).then(function () {
+        console.log('Couched!');
+      });
+    } else {
+      console.log('nothing to do :p')
+    }
   });
 });
