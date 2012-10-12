@@ -58,6 +58,7 @@ function prepareGirlsToBeStored(girls) {
   girls.forEach(function (girl) {
     girl._id = girl.id;
     girl.updatedAt = updatedAt;
+    girl.lastSeenAt = updatedAt;
   });
 
   //
