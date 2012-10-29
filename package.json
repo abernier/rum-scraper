@@ -2,7 +2,10 @@
   "name": "rum-scraper",
   "version": "0.0.0",
   "description": "ERROR: No README.md file found!",
-  "main": "seed.js",
+  "main": "./index.js",
+  "bin" : {
+    "rum-scrap" : "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +21,8 @@
   },
   "dependencies": {
     "optimist": "latest",
-    "nq": "latest",
-    "request": "latest"
+    "nq": "0.0.3",
+    "underscore": "latest",
+    "backbone": "latest"
   }
 }
