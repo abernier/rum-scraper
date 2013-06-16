@@ -1,21 +1,24 @@
 //
-// Usage: casperjs index.casper.js --url=http://www.adopteunmec.com/* --username=john --password=XXXX --cookies-file=cookies.txt
+// Usage: casperjs index.casper.js --url=http://www.adopteunmec.com/ --username=john --password=XXXX --cookies-file=cookies.txt --dirname=`pwd`
 //
 // cookies.txt must exist
 //
 
+var casper = require('casper').create();
+var dirname = casper.cli.get("dirname");
+
 var casper = require('casper').create({
-  //verbose: true,
-  //logLevel: "debug",
+  verbose: true,
+  //logLevel: 'debug',
   pageSettings: {
     loadImages: false
   },
   clientScripts: [
-    //"../node_modules/nq/lib/index.js",
-    "../node_modules/underscore/underscore.js",
-    "../node_modules/backbone/backbone.js",
-    "../lib/index.js",
-    "../lib/extractor.js"
+    //dirname + "/../node_modules/nq/lib/index.js",
+    dirname + "/../node_modules/underscore/underscore.js",
+    dirname + "/../node_modules/backbone/backbone.js",
+    dirname + "/../lib/index.js",
+    dirname + "/../lib/extractor.js"
   ]
 });
 
@@ -37,7 +40,7 @@ if (!url || !username || !password) {
 //
 
 casper.start(url, function () {
-  //this.echo('visiting url...', 'INFO');
+  casper.log('visiting url...', 'debug');
   //this.debugHTML();
 });
 
@@ -46,12 +49,12 @@ casper.start(url, function () {
 //
 
 casper.then(function() {
-  //this.echo('checking we are logged-in...', 'INFO');
+  casper.log('checking we are logged-in...', 'debug');
 
   var loggedIn = this.exists('a[href*="auth/logout"]');
 
   if (!loggedIn) {
-    //this.echo("no, let's login...", 'INFO');
+    //casper.log("no, let's login...", 'debug');
 
     this.fill('form[action*="auth/login"]', {
       'username': ''+username,
@@ -59,7 +62,7 @@ casper.then(function() {
       'remember': true
     }, true);
   } else {
-    //this.echo('ok, we are logged-in!', 'INFO');
+    casper.log('ok, we are logged-in!', 'debug');
   }
 });
 
@@ -75,7 +78,7 @@ casper.then(function () {
 
   //
   if (this.getCurrentUrl() !== url) {
-    //this.echo('Not on the right URL, let visit it...', 'INFO');
+    casper.log('Not on the right URL, let visit it...', 'debug');
     this.open(url);
   }
 });
@@ -85,14 +88,14 @@ casper.then(function () {
 //
 
 casper.then(function () {
-  //this.echo('let waitandstart', 'INFO');
+  casper.log('let waitandstart', 'debug');
   this.evaluate(function () {
     RUM.scraper.extractor.start();
   });
 });
 
 casper.waitFor(function () {
-  //this.echo('let waitfor', 'INFO');
+  casper.log('let waitfor', 'debug');
   return this.evaluate(function () {
     return RUM.scraper.extractor.docs;
   });

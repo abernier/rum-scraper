@@ -7,7 +7,7 @@
     "rum-scrap" : "./index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap test/*"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
     "nq": "0.0.3",
     "underscore": "latest",
     "backbone": "latest"
+  },
+  "devDependencies": {
+    "tap": "latest"
   }
 }

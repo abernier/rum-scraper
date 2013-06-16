@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var argv = require('optimist')
-      .usage('Scrap AUM and couch girls.\nUsage: $0 command -a http://www.adopteunmec.com/ -u john@example.org -p XXXXXX [Options]')
+      .usage('Scrap AUM and couch girls.\nUsage: $0 -a http://www.adopteunmec.com/ -u john@example.org -p XXXXXX [Options]')
       
       .alias('a', 'url')
       .demand('a')
@@ -30,7 +30,7 @@ var $ = require('nq');
 var exec = require('child_process').exec;
 function casper() {
   return $.Deferred(function (dfd) {
-    exec('casperjs index.casper.js --url=' + argv.url + ' --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=cookies.txt', function (error, stdout, stderr) {
+    exec('casperjs ' + __dirname + '/index.casper.js --url=' + argv.url + ' --username=' + argv.username + ' --password=' + argv.password + ' --cookies-file=' + __dirname + '/cookies.txt --dirname=' + __dirname, function (error, stdout, stderr) {
       if (error === null) {
         try {
           dfd.resolve(JSON.parse(''+stdout));
@@ -48,14 +48,11 @@ function casper() {
 // Flow
 //
 
-console.log('> Scraping docs from %s...', argv.url);
+//console.log('> Scraping docs from %s...', argv.url);
 casper().then(function (newDocs) {
-  console.log('< OK, %s docs scraped!', newDocs.length);
-  if (newDocs.length < 1) {
-    return;
-  }
-
-  //
+  console.log(JSON.stringify(newDocs));
+  process.exit(0);
+  /*//
   // 1- Merge new docs with old ones
   //
 
@@ -74,7 +71,8 @@ casper().then(function (newDocs) {
     couch.store(mergedDocs).done(function (data) {
       console.log('< OK, docs stored!', data);
     });
-  });
+  });*/
 }).fail(function (e) {
-  console.log(e);
+  process.stderr.write(e + '\n')
+  process.exit(1);
 });
