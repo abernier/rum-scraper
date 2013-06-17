@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/oiim/rum-scraper.png?branch=master)](https://travis-ci.org/oiim/rum-scraper)
+
 ## INSTALL
 
 Requirements:
