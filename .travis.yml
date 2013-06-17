@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - "0.8"
 before_install:
+  # http://ninja.sg/casperjs-travis-ci/
   - git clone git://github.com/n1k0/casperjs.git ~/casperjs
   - cd ~/casperjs
   - git checkout tags/1.0.2
@@ -10,3 +11,4 @@ before_install:
 before_script:
   - phantomjs --version
   - casperjs --version
+env: AUM_FEMALE_TEST_USERNAME=antoine.bernier+rumlola@gmail.com AUM_FEMALE_TEST_PASSWORD=toto123
