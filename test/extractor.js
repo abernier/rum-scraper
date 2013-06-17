@@ -21,10 +21,11 @@ function scrap(url, username, password) {
   }).promise();
 }
 
-test("Seed from thumbnails", function (t) {
+test("Extract docs from home", function (t) {
 	t.plan(2)
 
 	scrap('http://www.adopteunmec.com/', 'antoine.bernier+rumlola@gmail.com', 'toto123').then(function (docs) {
+		console.log(docs);
 
 		// [{}, ...]
 		t.ok(_.isArray(docs) && docs.length > 0, "should be a not empty array");
@@ -41,14 +42,14 @@ test("Seed from thumbnails", function (t) {
 			return true;
 		}()), "each doc should have an ID")
 
-		// TODO: sex, lastSeenAt, +rolloverObject properties
+		t.end()
 
 	}).fail(function (e) {
 	  t.end()
 	});
 });
 
-test("Consolidate from profile", function (t) {
+test("Extract docs from profile", function (t) {
 
 	//
 	// Male/Female, test with Rumlola
