@@ -170,4 +170,6 @@ test("Extract docs from profile", function (t) {
 		});
 	})
 
+	t.end()
+
 }); 
