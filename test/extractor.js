@@ -3,9 +3,14 @@ var test = require("tap").test;
 var $ = require('nq');
 var _ = require('underscore');
 
+var conf = require('rum-conf');
+
 // scraper helper
 var exec = require('child_process').exec;
 function scrap(url, username, password) {
+  username || (username = conf.aum_username);
+  password || (password = conf.aum_password);
+
   return $.Deferred(function (dfd) {
     exec(__dirname + '/../bin/index.js -a ' + url + ' -u ' + username + ' -p ' + password, function (error, stdout, stderr) {
       if (error === null) {
@@ -24,7 +29,7 @@ function scrap(url, username, password) {
 test("Extract docs from home", function (t) {
 	t.plan(2)
 
-	scrap('http://www.adopteunmec.com/', 'antoine.bernier+rumlola@gmail.com', 'toto123').then(function (docs) {
+	scrap('http://www.adopteunmec.com/').then(function (docs) {
 		console.log(docs);
 
 		// [{}, ...]
@@ -51,7 +56,7 @@ test("Extract docs from profile", function (t) {
 
 	t.plan(15); // in case scraper fails
 
-	scrap('http://www.adopteunmec.com/profile/17824159', 'antoine.bernier+rumlola@gmail.com', 'toto123').then(function (docs) {
+	scrap('http://www.adopteunmec.com/profile/17824159').then(function (docs) {
 		var doc = docs[0];
 		console.log(doc);
 
@@ -114,45 +119,45 @@ test("Extract docs from profile", function (t) {
 	  t.end()
 	});
 
-	//
-	// Female specific (Rumlola)
-	//
+});
 
-	test("female specific", function (t) {
-		t.plan(2); // in case scraper fails
+//
+// Female specific (Rumlola)
+//
 
-		scrap('http://www.adopteunmec.com/profile/17824159', 'antoine.bernier+rumlola@gmail.com', 'toto123').then(function (docs) {
-			var doc = docs[0];
-			console.log(doc)
+test("female specific", function (t) {
+	t.plan(2); // in case scraper fails
 
-			// sex
-			t.ok(doc.sex === 'female', "Runlola is a female")
+	scrap('http://www.adopteunmec.com/profile/17824159').then(function (docs) {
+		var doc = docs[0];
+		console.log(doc)
 
-			// charm
-			t.ok(_.isNumber(doc.charm) && doc.charm >= 0, "charm should be a positive number")
+		// sex
+		t.ok(doc.sex === 'female', "Runlola is a female")
 
-		}).fail(function (e) {
-		  t.end()
-		});
-	})
+		// charm
+		t.ok(_.isNumber(doc.charm) && doc.charm >= 0, "charm should be a positive number")
 
-	//
-	// Male specific
-	//
+	}).fail(function (e) {
+	  t.end()
+	});
+})
 
-	test("male specific", function (t) {
-		t.plan(1); // in case scraper fails
+//
+// Male specific
+//
 
-		scrap('http://www.adopteunmec.com/profile/26141696', 'antoine.bernier+rumlola@gmail.com', 'toto123').then(function (docs) {
-			var doc = docs[0];
-			console.log(doc)
+test("male specific", function (t) {
+	t.plan(1); // in case scraper fails
 
-			// sex
-			t.ok(doc.sex === 'male', "26141696 is a male")
+	scrap('http://www.adopteunmec.com/profile/26141696').then(function (docs) {
+		var doc = docs[0];
+		console.log(doc)
 
-		}).fail(function (e) {
-		  t.end()
-		});
-	})
+		// sex
+		t.ok(doc.sex === 'male', "26141696 is a male")
 
-}); 
+	}).fail(function (e) {
+	  t.end()
+	});
+})

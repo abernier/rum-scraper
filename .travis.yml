@@ -11,4 +11,3 @@ before_install:
 before_script:
   - phantomjs --version
   - casperjs --version
-env: AUM_FEMALE_TEST_USERNAME=antoine.bernier+rumlola@gmail.com AUM_FEMALE_TEST_PASSWORD=toto123

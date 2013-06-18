@@ -23,7 +23,8 @@
     "optimist": "latest",
     "nq": "0.0.3",
     "underscore": "latest",
-    "backbone": "latest"
+    "backbone": "latest",
+    "rum-conf": "https://github.com/oiim/rum-conf/archive/master.tar.gz"
   },
   "devDependencies": {
     "tap": "latest"

@@ -11,10 +11,12 @@ Requirements:
 npm install
 ```
 
+Edit your `.rumrc` configuration file: see [rum-conf](https://github.com/oiim/rum-conf#readme)
+
 ## Synopsis
 
 ```sh
-rum-scrap --help
+./bin/index.js --help
 ```
 
 ## Heroku
@@ -27,6 +29,6 @@ git push heroku master
 ```
 
 ```sh
-heroku config:add AUM_USERNAME=john@example.org AUM_PASSWORD=XXXXXX
+heroku config:add RUM_AUM_USERNAME=john@example.org RUM_AUM_PASSWORD=XXXXXX
 heroku ps:scale seeder=1
 ```
