@@ -13,7 +13,7 @@ before_script:
   - casperjs --version
 env:
   global:
-    # RUM_AUM_USERNAME
+    # rum_aum_username
     - secure: "f2a45zYYub5UBAegNVJ9MLgVLV9vCCYixYgxciL/DTXwaf7wpv18/cJq/FHR\ntWoc8ez6Jo4AvGfo9yqmmlyDWhyw8GG8bOhlghxgduisge//yFEU9lbyU+1x\nIzvsZT24fT6EF+gSw+fyLAclp89LuSZoHgJd2wcgy6oAPXED8Hg="
-    # RUM_AUM_PASSWORD
+    # rum_aum_password
     - secure: "WXCNzTAfTKY6/8aWyHMLhHjmnWauY/otUaG/Lg3Zk6i/AmXgE4MOE+DVPwVn\nsnUiB/SveYnQgBa+50HXA+eqizwl1K9joalAJbJJfvIMgGQahSLissBnUH4T\nAA17evkhQky6HWK9ep9OkJnWL/tXmTJXchddmzTG0u0qGZuAJxc="
