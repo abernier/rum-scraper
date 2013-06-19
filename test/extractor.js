@@ -47,6 +47,7 @@ test("Extract docs from home", function (t) {
 			return true;
 		}()), "each doc should have an ID")
 
+    t.end()
 	}).fail(function (e) {
 	  t.end()
 	});
@@ -115,6 +116,7 @@ test("Extract docs from profile", function (t) {
 		// shoppinglist
 		t.ok(doc.shoppinglist === "Un physique avant tout, puis juste derriere une tres bonne situation sociale, enfin, peut-etre un peu de love :p", "Rumlola shoppinglist")
 
+    t.end()
 	}).fail(function (e) {
 	  t.end()
 	});
@@ -138,6 +140,7 @@ test("female specific", function (t) {
 		// charm
 		t.ok(_.isNumber(doc.charm) && doc.charm >= 0, "charm should be a positive number")
 
+    t.end()
 	}).fail(function (e) {
 	  t.end()
 	});
@@ -157,6 +160,7 @@ test("male specific", function (t) {
 		// sex
 		t.ok(doc.sex === 'male', "26141696 is a male")
 
+    t.end()
 	}).fail(function (e) {
 	  t.end()
 	});
