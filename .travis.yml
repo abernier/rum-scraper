@@ -11,3 +11,4 @@ before_install:
 before_script:
   - phantomjs --version
   - casperjs --version
+secure: "LDKPc9w38HEXA6GH65w9gOZau2vXdSz+ir8W69YPNYwaLfwwIlURzt22lXNs\nhVnZxAuFZP+s1SMexl2Hascrtdn68bkVq+V/pBFv5PmB8FqNUnOcxm1otKOl\nWF7Wf5IKYfIe4F+N2m72Ap59M8Pkk5dEmsD0P70koDUxQ6zPVME="
