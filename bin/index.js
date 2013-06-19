@@ -15,7 +15,7 @@ var argv = require('optimist')
       .describe('p', 'your AUM password')
 
       .alias('c', 'couch')
-      .describe('c', 'where to couch girls')
+      .describe('c', 'where to couch docs')
       .default('c', 'http://localhost:5984/rum')
 
       .argv

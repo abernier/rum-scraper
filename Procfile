@@ -1,2 +1,2 @@
-seeder: while true; do ./seed.js -u $AUM_USERNAME -p $AUM_PASSWORD; done
+seeder: while true; do ./bin/index.js -a http://www.adopteunmec.com/ -u $RUM_AUM_USERNAME -p $RUM_AUM_PASSWORD; done
 consolidator: while true; do ./consolidate.js; done
