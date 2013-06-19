@@ -14,6 +14,6 @@ before_script:
 env:
   global:
     # rum_aum_username
-    - secure: "f2a45zYYub5UBAegNVJ9MLgVLV9vCCYixYgxciL/DTXwaf7wpv18/cJq/FHR\ntWoc8ez6Jo4AvGfo9yqmmlyDWhyw8GG8bOhlghxgduisge//yFEU9lbyU+1x\nIzvsZT24fT6EF+gSw+fyLAclp89LuSZoHgJd2wcgy6oAPXED8Hg="
+    - secure: "goDyVfc7wD/q8IKx819ZEmSzmTw0BpZJuCjO2KcKDTU6TJXcqyKR/YklXFI5\nCPykg35GZQkk3TqvjWsafMThZGEMlmx8z4KPWxizkN9/2RNoOUv5rEbNYOmz\n3R7VThablPmXudecVKJftzDNdkL95DCY3Tw9Fq5b7hGdN9wthW0="
     # rum_aum_password
-    - secure: "WXCNzTAfTKY6/8aWyHMLhHjmnWauY/otUaG/Lg3Zk6i/AmXgE4MOE+DVPwVn\nsnUiB/SveYnQgBa+50HXA+eqizwl1K9joalAJbJJfvIMgGQahSLissBnUH4T\nAA17evkhQky6HWK9ep9OkJnWL/tXmTJXchddmzTG0u0qGZuAJxc="
+    - secure: "FqLqE57mujY3w2pG7pcb9+qSYXB+glLTEuYYIovSCF3CymmAVt5v7DazoSWE\nrZjq6ZVQXhHm9e+7S9FWD0w+oQjWpM+TxgHphLwkZDshPNQNbS9UnIhf9KgO\nAP1+J0c9ekOIwYjSrv1pNy2mR/I7buE6Dz05Homkm+t2qoz1JmI="
