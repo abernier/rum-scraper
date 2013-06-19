@@ -11,4 +11,8 @@ before_install:
 before_script:
   - phantomjs --version
   - casperjs --version
-secure: "LDKPc9w38HEXA6GH65w9gOZau2vXdSz+ir8W69YPNYwaLfwwIlURzt22lXNs\nhVnZxAuFZP+s1SMexl2Hascrtdn68bkVq+V/pBFv5PmB8FqNUnOcxm1otKOl\nWF7Wf5IKYfIe4F+N2m72Ap59M8Pkk5dEmsD0P70koDUxQ6zPVME="
+env:
+  # RUM_AUM_USERNAME
+  - secure: "f2a45zYYub5UBAegNVJ9MLgVLV9vCCYixYgxciL/DTXwaf7wpv18/cJq/FHR\ntWoc8ez6Jo4AvGfo9yqmmlyDWhyw8GG8bOhlghxgduisge//yFEU9lbyU+1x\nIzvsZT24fT6EF+gSw+fyLAclp89LuSZoHgJd2wcgy6oAPXED8Hg="
+  # RUM_AUM_PASSWORD
+  secure: "WXCNzTAfTKY6/8aWyHMLhHjmnWauY/otUaG/Lg3Zk6i/AmXgE4MOE+DVPwVn\nsnUiB/SveYnQgBa+50HXA+eqizwl1K9joalAJbJJfvIMgGQahSLissBnUH4T\nAA17evkhQky6HWK9ep9OkJnWL/tXmTJXchddmzTG0u0qGZuAJxc="
