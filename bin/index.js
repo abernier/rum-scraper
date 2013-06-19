@@ -1,22 +1,25 @@
 #!/usr/bin/env node
+
+var conf = require('rum-conf');
+
 var argv = require('optimist')
-      .usage('Scrap AUM and couch girls.\nUsage: $0 -a http://www.adopteunmec.com/ -u john@example.org -p XXXXXX [Options]')
+      .usage('Scrap AUM and couch girls.\nUsage: $0 -a http://www.adopteunmec.com/ [Options]')
       
       .alias('a', 'url')
       .demand('a')
       .describe('a', 'URL to visit')
 
       .alias('u', 'username')
-      .demand('u')
       .describe('u', 'your AUM login')
+      .default('u', conf.aum_username)
 
       .alias('p', 'password')
-      .demand('p')
       .describe('p', 'your AUM password')
+      .default('p', conf.aum_password)
 
       .alias('c', 'couch')
       .describe('c', 'where to couch docs')
-      .default('c', 'http://localhost:5984/rum')
+      .default('c', conf.couch)
 
       .argv
     ;
