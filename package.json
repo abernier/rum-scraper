@@ -15,13 +15,9 @@
   },
   "author": "",
   "license": "BSD",
-  "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
-  },
   "dependencies": {
     "optimist": "latest",
-    "nq": "0.0.3",
+    "nq": "latest",
     "underscore": "latest",
     "backbone": "latest",
     "rum-conf": "https://github.com/oiim/rum-conf/archive/master.tar.gz"
